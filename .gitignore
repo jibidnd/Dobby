@@ -1,0 +1,64 @@
+# Credentials
+.env
+.env.*
+!.env.example
+
+# Local tool connections may contain account-specific paths and OAuth state.
+.mcp.json
+
+# Personal overlays (per-person, not shared). The *.local.example.md
+# templates are tracked; the real *.local.md files a person fills in are not.
+*.local.md
+!*.local.example.md
+
+# Local caches and outputs
+*.duckdb
+*.duckdb.wal
+*.sqlite
+*.log
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+venv/
+.ipynb_checkpoints/
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+knowledge/.obsidian/
+knowledge/.claudian/
+
+# Personal content — NOT git-tracked. This is your stuff: working memory and durable
+# notes alike. Back it up via Dropbox/sync (the repo lives inside your synced folder),
+# not git. git tracks only the dobby product (skills, hooks, doctrine, config).
+memory/*
+knowledge/*
+# Keep empty private-state directories present in a fresh clone while ignoring
+# every personal file created inside them.
+!memory/.gitkeep
+!knowledge/.gitkeep
+# session_capture local state (prompt buffers + current session pointer)
+memory/.session_prompts/
+memory/.current_session
+
+# Optional personal experimental skills
+.agents/skills/personal/
+
+# Local discovery links to .agents/skills (junctions on Windows; not committed)
+# Real skill content is tracked under .agents/skills/
+/skills
+
+# Local novacode/opencode integration — directory junction, machine-specific
+.opencode/
+
+# Node dependencies (local installs, not committed)
+node_modules/
+
+# opencode-plugin source is tracked (OpenCode CLI memory adapter).
+# node_modules/ above already ignores deps under opencode-plugin/

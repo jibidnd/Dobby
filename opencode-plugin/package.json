@@ -1,0 +1,14 @@
+{
+  "name": "dobby-opencode-plugin",
+  "version": "0.1.0",
+  "description": "dobby — OpenCode CLI plugin. Shells out to Python hooks for BM25 knowledge retrieval and session init.",
+  "type": "module",
+  "main": "./index.ts",
+  "exports": {
+    ".": "./index.ts",
+    "./server": "./index.ts"
+  },
+  "dependencies": {
+    "@opencode-ai/plugin": "^1.14.0"
+  }
+}

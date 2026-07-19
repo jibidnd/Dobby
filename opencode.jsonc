@@ -1,0 +1,15 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  // dobby self-bootstrap: doctrine + skills. Memory hooks come from opencode-plugin.
+  // No standing subagents — dobby is one generalist; deploy-team-style fan-out spawns
+  // ephemeral role-primed workers on the fly (see AGENTS.md "Fan out only when it earns its keep").
+  // No MCP by default — add gmail/dropbox/etc. later via a .mcp.json (the plugin merges it).
+  "instructions": [
+    "AGENTS.md"
+  ],
+  "skills": {
+    "paths": [
+      ".agents/skills"
+    ]
+  }
+}

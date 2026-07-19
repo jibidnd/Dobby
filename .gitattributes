@@ -1,0 +1,7 @@
+# Normalize line endings: store LF in the repo, check out native on Windows.
+# Keeps diffs clean and avoids CRLF warnings whether dobby runs on Windows or Linux.
+* text=auto eol=lf
+
+# Windows batch files must stay CRLF if any are ever added.
+*.cmd text eol=crlf
+*.bat text eol=crlf

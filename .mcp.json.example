@@ -1,0 +1,31 @@
+{
+  "_readme": [
+    "dobby MCP tools — INACTIVE until you copy this file to .mcp.json.",
+    "The opencode-plugin merges .mcp.json at startup (restart OpenCode after changes).",
+    "Composio manages OAuth for Gmail, Calendar, Dropbox, GitHub, and other services.",
+    "After copying, run: opencode mcp auth composio",
+    "Remove the filesystem entry if you do not want local file access."
+  ],
+
+  "mcpServers": {
+
+    "composio": {
+      "_note": "Managed OAuth for cloud apps. Run `opencode mcp auth composio`, then ask dobby to connect individual services.",
+      "type": "remote",
+      "url": "https://connect.composio.dev/mcp",
+      "timeout": 30000
+    },
+
+    "filesystem": {
+      "_note": "Local file access — point it at your Dropbox folder / Obsidian vault (read as plain files, no plugin needed) and any project folders. No auth.",
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-filesystem",
+        "C:/Users/<YOU>/Dropbox",
+        "C:/Users/<YOU>/Dropbox/ObsidianVault"
+      ],
+      "timeout": 120000
+    }
+  }
+}
