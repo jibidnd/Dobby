@@ -38,11 +38,11 @@ knowledge/.claudian/
 # notes alike. Back it up via Dropbox/sync (the repo lives inside your synced folder),
 # not git. git tracks only the dobby product (skills, hooks, doctrine, config).
 memory/*
-knowledge/*
-# Keep empty private-state directories present in a fresh clone while ignoring
-# every personal file created inside them.
+# The knowledge directory may be a local junction to an Obsidian vault.
+knowledge/
+# Keep an empty private memory directory present in a fresh clone while ignoring
+# every personal file created inside it.
 !memory/.gitkeep
-!knowledge/.gitkeep
 # session_capture local state (prompt buffers + current session pointer)
 memory/.session_prompts/
 memory/.current_session

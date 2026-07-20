@@ -48,7 +48,7 @@ run  configure-dobby
    4  Permissions        pick a tier (1 question) → write global OpenCode
    5  Provider auth      Claude subscription / API key / other  (1 question)
    6  Connect tools      Composio OAuth + optional local files → .mcp.json
-   7  Make it yours      optional: name/role/paths → dobby.local.md; scaffold knowledge topics
+   7  Make it yours      optional: name/role/paths → dobby.local.md; choose a knowledge location
    8  Prove it           health board → RESTART required → welcome
 ```
 
@@ -88,6 +88,7 @@ Probe the machine (don't ask what you can detect):
 - Env: is the `DOBBY_HOME` user var set and correct?
 - Provider auth: has the user authed a model provider? (`opencode auth list`, or `ANTHROPIC_API_KEY` in env / `~/.dobby/.env`)
 - Personal overlay: does `dobby.local.md` exist?
+- Knowledge location: is `<DOBBY_HOME>/knowledge` a normal directory or a junction/symlink to an external vault?
 
 Show a compact **status board** and plan, then **one** confirm question:
 
@@ -217,7 +218,23 @@ For `Filesystem only`, copy the filesystem entry with the user-selected folders.
 - **Defaults:** no `dobby.local.md`; continue.
 - **Touches:** short interview (name, role/fluency, output paths) → copy `dobby.local.example.md` to `dobby.local.md`, fill only those fields, add its path to OpenCode `instructions`.
 
-## 7B — Scaffold the knowledge vault
+## 7B — Choose the knowledge base
+
+Ask before creating any starter folders:
+
+> **Where should dobby keep durable knowledge?**
+> - **`Dobby knowledge folder`** (recommended) — keep private notes in `<DOBBY_HOME>/knowledge`.
+> - **`Link an existing knowledge base`** — use an Obsidian vault or another folder you already maintain.
+
+For `Link an existing knowledge base`:
+
+1. Ask for the absolute folder path. Explain that every future `/remember` and knowledge-intake write will go there; for example, `C:/Users/<you>/Dropbox/ObsidianVault`.
+2. Verify the path exists and is a directory. Do not create a new external knowledge-base folder without a separate confirmation.
+3. Inspect `<DOBBY_HOME>/knowledge`. If it contains real notes, show the files and ask how to merge them. Never overwrite a same-named vault file. If it contains only dobby's empty starter scaffold, do not copy that scaffold into the external vault.
+4. Replace `<DOBBY_HOME>/knowledge` with a directory link to the chosen folder: Windows uses `cmd /c mklink /J`; macOS/Linux use `ln -s`. Preserve any pre-existing local files until the user explicitly approves their deletion or move.
+5. Rebuild with `python hooks/bm25_index.py --build`, run one relevant query, and state that the external vault is now the source of truth. Its contents remain untracked by Git.
+
+## 7C — Scaffold the knowledge vault
 
 `knowledge/` starts blank. Offer to create a starter topic structure so there are obvious homes for notes (and so session-start injection has index maps to load). It's gitignored (personal), so this only affects the local/Dropbox copy.
 
